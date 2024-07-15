@@ -33,6 +33,7 @@ function operate(operand1, operand2, operator) {
 const displayButton = document.querySelectorAll('.displayButton') // getting a node list
 const operand = document.querySelectorAll('.operand')
 const equalTo = document.querySelector('button:last-child')
+const allClear = document.querySelector('button:nth-child(14)')
 const display = document.querySelector('.display')
 
 // iterating over each value of the node list (forEach loop?)
@@ -50,8 +51,7 @@ displayButton.forEach((element) => {
     element.addEventListener('click', () => {
         display.textContent = element.textContent;
         displayValue = display.textContent;
-        userInputOfNumber.push(displayValue)
-
+        userInputOfNumber.push(displayValue) //push() throws the value back to global scope!
     })
 })
 
@@ -62,6 +62,16 @@ operand.forEach((element) => {
 })
 
 equalTo.addEventListener('click', () => {
-    let result = operate(+userInputOfNumber[0],+userInputOfNumber[1],userInputOfOperand[0]);
+    let result = operate(+userInputOfNumber[0], +userInputOfNumber[1], userInputOfOperand[0]);
     display.textContent = result;
+})
+
+allClear.addEventListener('click', () => {
+    while (userInputOfNumber[0]) {
+        userInputOfNumber.pop()
+    }
+    while (userInputOfOperand[0]) {
+        userInputOfOperand.pop()
+    }
+    display.textContent = '0';
 })
