@@ -29,3 +29,19 @@ function operate(operand1, operand2, operator) {
             return divide(operand1, operand2);
     }
 }
+
+const displayButton = document.querySelectorAll('.displayButton') // getting a node list
+const display = document.querySelector('.display')
+
+// iterating over each value of the node list (forEach loop?)
+// for (let i = 0; i < displayButton.length; i++) {
+//     displayButton[i].addEventListener('click', () => {
+//         display.textContent = displayButton[i].textContent
+//     })
+// }
+
+displayButton.forEach((element) => {
+    element.addEventListener('click', ()=>{
+        return display.textContent = element.textContent;
+    })
+})
