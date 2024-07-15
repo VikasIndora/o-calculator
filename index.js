@@ -39,9 +39,10 @@ const display = document.querySelector('.display')
 //         display.textContent = displayButton[i].textContent
 //     })
 // }
-
+let displayValue;
 displayButton.forEach((element) => {
     element.addEventListener('click', ()=>{
-        return display.textContent = element.textContent;
+        display.textContent = element.textContent;
+        displayValue = display.textContent;
     })
 })
