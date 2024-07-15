@@ -6,30 +6,34 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1.89rem;
     font-family: "Audiowide", sans-serif;
     background-color: #eee;
 }
 
 .frame {
     border: 1px solid black;
+    border-radius: 1rem;
     width: 18.438rem;
     height: 29.833rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    background-color: #4B4A54;
 }
 
 .display {
-    border: 1px solid red;
+    border: 3px solid #212121;
+    border-radius: 0.75rem;
     margin: 0rem 1rem 0rem 1rem;
     padding: 0.5rem;
     text-align: end;
     font-size: 3rem;
+    background-color: white;
+    color: #FF00E9;
 }
 
 .buttons {
-    border: 1px solid red;
     margin: 0rem 1rem 0rem 1rem;
     display: flex;
     flex-wrap: wrap;
@@ -41,4 +45,15 @@ button {
     width: 3.78rem;
     height: 3.78rem;
     border-radius: 0.6rem;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    background-color: white;
+}
+
+button:last-child {
+    background-color: #FF00E9;
+}
+
+button:nth-child(14) {
+    font-size: 1.5rem;
+    font-weight: 600;
 }
