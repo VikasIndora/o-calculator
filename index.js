@@ -12,9 +12,9 @@ function divide(a, b) {
 }
 
 // calculation operation variables
-let operand1;
-let operator;
-let operand2;
+// let operand1;
+// let operator;
+// let operand2;
 
 // operation function
 function operate(operand1, operand2, operator) {
@@ -31,7 +31,7 @@ function operate(operand1, operand2, operator) {
 }
 
 const displayButton = document.querySelectorAll('.displayButton') // getting a node list
-const operand = document.querySelectorAll('.operand')
+const operator = document.querySelectorAll('.operator')
 const equalTo = document.querySelector('button:last-child')
 const allClear = document.querySelector('button:nth-child(14)')
 const display = document.querySelector('.display')
@@ -45,7 +45,7 @@ const display = document.querySelector('.display')
 
 let displayValue;
 let userInputOfNumber = []
-let userInputOfOperand = []
+let userInputOfOperator = []
 
 displayButton.forEach((element) => {
     element.addEventListener('click', () => {
@@ -55,14 +55,14 @@ displayButton.forEach((element) => {
     })
 })
 
-operand.forEach((element) => {
+operator.forEach((element) => {
     element.addEventListener('click', () => {
-        userInputOfOperand.push(element.textContent)
+        userInputOfOperator.push(element.textContent)
     })
 })
 
 equalTo.addEventListener('click', () => {
-    let result = operate(+userInputOfNumber[0], +userInputOfNumber[1], userInputOfOperand[0]);
+    let result = operate(+userInputOfNumber[0], +userInputOfNumber[1], userInputOfOperator[0]);
     display.textContent = result;
 })
 
@@ -70,8 +70,8 @@ allClear.addEventListener('click', () => {
     while (userInputOfNumber[0]) {
         userInputOfNumber.pop()
     }
-    while (userInputOfOperand[0]) {
-        userInputOfOperand.pop()
+    while (userInputOfOperator[0]) {
+        userInputOfOperator.pop()
     }
     display.textContent = '0';
 })
