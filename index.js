@@ -43,46 +43,35 @@ const display = document.querySelector('.display')
 //     })
 // }
 
-let currentNumber = ''
-let previousNumber = ''
-let currentOperator = ''
+let displayValue;
+let userInputOfNumber = []
+let userInputOfOperator = []
 
 number.forEach((element) => {
     element.addEventListener('click', () => {
-        if (display.textContent === '0' || display.textContent === previousNumber) {
-            display.textContent = element.textContent
-        } else {
-            display.textContent += element.textContent
-        }
-        currentNumber = display.textContent
+        display.textContent = element.textContent;
+        displayValue = display.textContent;
+        userInputOfNumber.push(displayValue) //push() throws the value back to global scope!
     })
 })
 
 operator.forEach((element) => {
     element.addEventListener('click', () => {
-        if (currentNumber && currentOperator) {
-            previousNumber = operate(parseFloat(previousNumber), parseFloat(currentNumber), currentOperator);
-            display.textContent = previousNumber;
-        } else {
-            previousNumber = currentNumber
-        }
-        currentOperator = element.textContent;
-        currentNumber = '';
+        userInputOfOperator.push(element.textContent)
     })
 })
 
 equalTo.addEventListener('click', () => {
-    if (currentNumber && previousNumber && currentOperator) {
-        display.textContent = operate(parseFloat(previousNumber), parseFloat(currentNumber), currentOperator);
-        previousNumber = display.textContent;
-        currentNumber = '';
-        currentOperator = '';
-    }
+    let result = operate(+userInputOfNumber[0], +userInputOfNumber[1], userInputOfOperator[0]);
+    display.textContent = result;
 })
 
 allClear.addEventListener('click', () => {
-    currentNumber = '';
-    previousNumber = '';
-    currentOperator = '';
+    while (userInputOfNumber[0]) {
+        userInputOfNumber.pop()
+    }
+    while (userInputOfOperator[0]) {
+        userInputOfOperator.pop()
+    }
     display.textContent = '0';
 })
