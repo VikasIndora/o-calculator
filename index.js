@@ -43,35 +43,46 @@ const display = document.querySelector('.display')
 //     })
 // }
 
-let displayValue;
-let userInputOfNumber = []
-let userInputOfOperator = []
+let currentNumber = ''
+let previousNumber = ''
+let currentOperator = ''
 
 number.forEach((element) => {
     element.addEventListener('click', () => {
-        display.textContent = element.textContent;
-        displayValue = display.textContent;
-        userInputOfNumber.push(displayValue) //push() throws the value back to global scope!
+        if (display.textContent === '0' || display.textContent === previousNumber) {
+            display.textContent = element.textContent
+        } else {
+            display.textContent += element.textContent
+        }
+        currentNumber = display.textContent
     })
 })
 
 operator.forEach((element) => {
     element.addEventListener('click', () => {
-        userInputOfOperator.push(element.textContent)
+        if (currentNumber && currentOperator) {
+            previousNumber = operate(parseFloat(previousNumber), parseFloat(currentNumber), currentOperator);
+            display.textContent = previousNumber;
+        } else {
+            previousNumber = currentNumber
+        }
+        currentOperator = element.textContent;
+        currentNumber = '';
     })
 })
 
 equalTo.addEventListener('click', () => {
-    let result = operate(+userInputOfNumber[0], +userInputOfNumber[1], userInputOfOperator[0]);
-    display.textContent = result;
+    if (currentNumber && previousNumber && currentOperator) {
+        display.textContent = operate(parseFloat(previousNumber), parseFloat(currentNumber), currentOperator);
+        previousNumber = display.textContent;
+        currentNumber = '';
+        currentOperator = '';
+    }
 })
 
 allClear.addEventListener('click', () => {
-    while (userInputOfNumber[0]) {
-        userInputOfNumber.pop()
-    }
-    while (userInputOfOperator[0]) {
-        userInputOfOperator.pop()
-    }
+    currentNumber = '';
+    previousNumber = '';
+    currentOperator = '';
     display.textContent = '0';
 })
