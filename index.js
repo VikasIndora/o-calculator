@@ -30,16 +30,16 @@ function operate(operand1, operand2, operator) {
     }
 }
 
-const displayButton = document.querySelectorAll('.displayButton') // getting a node list
+const number = document.querySelectorAll('.number') // getting a node list
 const operator = document.querySelectorAll('.operator')
 const equalTo = document.querySelector('button:last-child')
 const allClear = document.querySelector('button:nth-child(14)')
 const display = document.querySelector('.display')
 
 // iterating over each value of the node list (forEach loop?)
-// for (let i = 0; i < displayButton.length; i++) {
-//     displayButton[i].addEventListener('click', () => {
-//         display.textContent = displayButton[i].textContent
+// for (let i = 0; i < number.length; i++) {
+//     number[i].addEventListener('click', () => {
+//         display.textContent = number[i].textContent
 //     })
 // }
 
@@ -47,7 +47,7 @@ let displayValue;
 let userInputOfNumber = []
 let userInputOfOperator = []
 
-displayButton.forEach((element) => {
+number.forEach((element) => {
     element.addEventListener('click', () => {
         display.textContent = element.textContent;
         displayValue = display.textContent;
