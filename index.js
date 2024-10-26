@@ -40,6 +40,7 @@ let firstOperand;
 let secondOperand;
 let operation;
 let result;
+let tempResult;
 
 number.forEach(function (element) {
     element.addEventListener("click", function () {
@@ -52,10 +53,15 @@ number.forEach(function (element) {
 
 operator.forEach(function (element) {
     element.addEventListener("click", function () {
-        if (operation === undefined || operation === null) {
+        if (operation && firstOperand) {
+            secondOperand = display.textContent;
+            tempResult = operate(+firstOperand, +secondOperand, operation);
+            firstOperand = tempResult;
+            operation = element.textContent;
+        } else {
+            operation = element.textContent;
             firstOperand = display.textContent;
         }
-        operation = element.textContent;
         if (display.textContent == result) {
             firstOperand = display.textContent;
         }
@@ -67,6 +73,8 @@ equalTo.addEventListener("click", function () {
     secondOperand = display.textContent;
     result = operate(+firstOperand, +secondOperand, operation);
     display.textContent = result;
+    firstOperand = result;
+    operation = null;
 });
 
 allClear.addEventListener("click", function () {
@@ -75,4 +83,5 @@ allClear.addEventListener("click", function () {
     secondOperand = null;
     operation = null;
     result = null;
+    tempResult = null;
 });
