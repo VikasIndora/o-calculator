@@ -10,7 +10,7 @@ function multiply(a, b) {
 function divide(a, b) {
     if (a % b === 0) {
         return a / b;
-    } else if (a / 0) {
+    } else if (b === 0) {
         return `Nope!`;
     } else {
         return (a / b).toFixed(2);
